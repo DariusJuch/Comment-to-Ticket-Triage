@@ -53,7 +53,7 @@ GET /tickets
 ➤ Get Ticket by ID
 GET /tickets/{id}
 
-🤖 AI Integration
+# 🤖 AI Integration
 
 This project uses the Hugging Face Inference API to analyze comments and return structured JSON.
 
@@ -66,7 +66,7 @@ Example prompt output:
   "priority": "high",
   "summary": "Application crashes when user clicks save button"
 }
-⚙️ Setup & Run
+# ⚙️ Setup & Run
 1. Clone repository
 git clone https://github.com/DariusJuch/Comment-to-Ticket-Triage
 cd Comment-to-Ticket-Triage/backend/pulsedesk
@@ -81,14 +81,16 @@ mvn spring-boot:run
 Application will start on:
 
 http://localhost:8080
-🧪 Example Usage
+
+# 🧪 Example Usage
 Create a comment:
 curl -X POST http://localhost:8080/comments \
 -H "Content-Type: application/json" \
 -d '{"text":"Payment not working"}'
 Get tickets:
 curl http://localhost:8080/tickets
-🧱 Architecture Overview
+
+# 🧱 Architecture Overview
 User → REST API → Comment Service → Hugging Face API
                                   ↓
                           AI Response Parser
@@ -96,14 +98,16 @@ User → REST API → Comment Service → Hugging Face API
                            Ticket Generator
                                   ↓
                              Database
-📌 Future Improvements
+
+# 📌 Future Improvements
 Add authentication (Spring Security)
 Replace in-memory DB with PostgreSQL
 Add frontend dashboard
 Improve AI prompt accuracy
 Add ticket status workflow (OPEN / IN_PROGRESS / CLOSED)
 Deploy to cloud (AWS / GCP)
-💡 Author
+
+# 💡 Author
 
 Darius Juch
 
@@ -113,6 +117,7 @@ REST API design
 AI integration
 Clean architecture
 Spring Boot backend development
-🏁 Summary
+
+# 🏁 Summary
 
 PulseDesk demonstrates how AI can be integrated into backend systems to automate support workflows and improve efficiency.
