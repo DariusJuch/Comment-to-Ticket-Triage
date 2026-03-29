@@ -43,12 +43,16 @@ Request body:
 {
   "text": "App crashes when I click save"
 }
+
 ➤ Get All Comments
 GET /comments
+
 ➤ Get All Tickets
 GET /tickets
+
 ➤ Get Ticket by ID
 GET /tickets/{id}
+
 🤖 AI Integration
 
 This project uses the Hugging Face Inference API to analyze comments and return structured JSON.
