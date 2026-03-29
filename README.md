@@ -1,57 +1,114 @@
-# PulseDesk - AI Comment-to-Ticket System
+# 🚀 PulseDesk - AI Comment-to-Ticket Triage System
 
-## 🚀 Overview
+PulseDesk is a backend system that automatically converts user comments into structured support tickets using AI (Hugging Face Inference API).
 
-This project automatically converts user comments into structured support tickets using AI.
+The goal of this project is to simulate a real-world support system where incoming feedback is intelligently classified and prioritized.
 
-## 🛠 Tech Stack
+---
 
-* Java 17+
-* Spring Boot
-* H2 Database
-* Hugging Face Inference API
+# 🧠 Features
 
-## 📡 API Endpoints
+- Submit user comments via REST API
+- Automatically analyze comments using AI (Hugging Face)
+- Decide whether a comment becomes a support ticket
+- Generate structured ticket data:
+  - Title
+  - Category (bug / feature / billing / account / other)
+  - Priority (low / medium / high)
+  - Summary
+- Store comments and tickets in memory / H2 database
+- Retrieve all tickets or single ticket
 
-### Create comment
+---
 
-POST /api/comments
+# 🏗️ Tech Stack
 
-### Get comments
+- Java 17+
+- Spring Boot
+- Spring Web
+- Spring Data JPA
+- H2 Database
+- REST API
+- Hugging Face Inference API
 
-GET /api/comments
+---
 
-### Get tickets
+# 📡 API Endpoints
 
-GET /api/tickets
+## ➤ Create Comment
 
-## ⚙️ Setup
+POST /comments
 
-1. Clone repo
-2. Set environment variable:
+Request body:
+{
+  "text": "App crashes when I click save"
+}
+➤ Get All Comments
+GET /comments
+➤ Get All Tickets
+GET /tickets
+➤ Get Ticket by ID
+GET /tickets/{id}
+🤖 AI Integration
 
-   ```
-   HF_API_KEY=your_key
-   ```
-3. Run:
+This project uses the Hugging Face Inference API to analyze comments and return structured JSON.
 
-   ```
-   mvn spring-boot:run
-   ```
+Example prompt output:
 
-## 🤖 AI Integration
+{
+  "isTicket": true,
+  "title": "App crash on save",
+  "category": "bug",
+  "priority": "high",
+  "summary": "Application crashes when user clicks save button"
+}
+⚙️ Setup & Run
+1. Clone repository
+git clone https://github.com/DariusJuch/Comment-to-Ticket-Triage
+cd Comment-to-Ticket-Triage/backend/pulsedesk
+2. Set environment variables
 
-Uses Hugging Face model to classify comments and generate ticket data.
+Create system environment variable:
 
-## 📌 Features
+HF_API_KEY=your_huggingface_api_key
+3. Run application
+mvn spring-boot:run
 
-* Automatic ticket creation
-* Category detection
-* Priority assignment
-* REST API
+Application will start on:
 
-## 💡 Future Improvements
+http://localhost:8080
+🧪 Example Usage
+Create a comment:
+curl -X POST http://localhost:8080/comments \
+-H "Content-Type: application/json" \
+-d '{"text":"Payment not working"}'
+Get tickets:
+curl http://localhost:8080/tickets
+🧱 Architecture Overview
+User → REST API → Comment Service → Hugging Face API
+                                  ↓
+                          AI Response Parser
+                                  ↓
+                           Ticket Generator
+                                  ↓
+                             Database
+📌 Future Improvements
+Add authentication (Spring Security)
+Replace in-memory DB with PostgreSQL
+Add frontend dashboard
+Improve AI prompt accuracy
+Add ticket status workflow (OPEN / IN_PROGRESS / CLOSED)
+Deploy to cloud (AWS / GCP)
+💡 Author
 
-* Add authentication
-* Add frontend UI
-* Deploy to cloud
+Darius Juch
+
+Project built for backend internship application demonstrating:
+
+REST API design
+AI integration
+Clean architecture
+Spring Boot backend development
+🏁 Summary
+
+PulseDesk demonstrates how AI can be integrated into backend systems to automate support workflows and improve efficiency.
